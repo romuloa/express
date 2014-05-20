@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/romuloa/express/issues"
   },
-  "homepage": "https://github.com/romuloa/express"
+  "homepage": "https://github.com/romuloa/express",
+  "dependencies": {
+    "express": "3.x"
+  }
 }
