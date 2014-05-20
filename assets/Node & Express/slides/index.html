@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>JavaScript: Functions</title>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="_/ray_light.css" id="theme">
+  <link rel="stylesheet" href="_/solarized_dark.css">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+
+<section data-markdown data-separator="\n---\n" data-notes="^Note:">
+<script type="text/template">
+
+# Node & Express.js<!-- .slide: class="title" -->
+###with [Ray Villalobos](http://en.gravatar.com/planetoftheweb)
+
+Wireless: MSFTGUEST username: usmsguest password: F3y53296<!-- .element: style="font-size: .7em; padding-top: 10px;" -->
+
+__Slides__: [http://bit.ly/devjsapps](http://bit.ly/devjsapps)
+
+__Download Assets__: [http://bit.ly/devjsappsdl](http://bit.ly/devjsappsdl)
+
+Use arrow keys to continue<!-- .element: style="font-size: .7em; padding-top: 10px;" -->
+
+---
+
+## What we will learn
+
+- Node Workflows<!-- .element: class="fragment" -->
+- Git & Github<!-- .element: class="fragment" -->
+- npm<!-- .element: class="fragment" -->
+- Node.js Fundamentals<!-- .element: class="fragment" -->
+- Generator<!-- .element: class="fragment" -->
+- Routing<!-- .element: class="fragment" -->
+- EJS<!-- .element: class="fragment" -->
+
+---
+
+# Part I<!-- .slide: class="title" -->
+## Installation
+
+---
+
+# What you will need
+## Download, Install & Accounts
+
+- Intructions: [Windows](https://www.youtube.com/watch?v=kXikXodx-y4) | [Mac](https://www.youtube.com/watch?v=2Pjfs6lxFGo)
+- [Node.js](http://nodejs.org/)
+- [Heroku Account](https://www.heroku.com/)
+- [Heroku Toolbelt](https://toolbelt.heroku.com/)
+- [Github Account](https://github.com/)
+
+---
+
+## What did I just install?
+
+- Node.js: JavaScript on the server side<!-- .element: class="fragment" -->
+- Heroku: Host your app on an App Server<!-- .element: class="fragment" -->
+- Toolbelt: Git, Heroku CLI<!-- .element: class="fragment" -->
+- Github: Version Control on the Web<!-- .element: class="fragment" -->
+
+---
+
+# Part II<!-- .slide: class="title" -->
+## Setup
+
+---
+
+## How we will set up
+
+- Set up local folder<!-- .element: class="fragment" -->
+- .gitignore<!-- .element: class="fragment" -->
+- Add a README.md<!-- .element: class="fragment" -->
+- npm Init our Package.json file<!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" -->
+
+---
+
+##Starting our project
+[Markdown](http://daringfireball.net/projects/markdown/syntax)
+
+- Create a folder<!-- .element: class="fragment" -->
+- Add a README.md File<!-- .element: class="fragment" -->
+- Instructions about your project<!-- .element: class="fragment" -->
+- For your GitHub homepage<!-- .element: class="fragment" -->
+
+```
+
+## Roux Meetups
+
+This is a sample project for the Roux Meetups. This project uses:
+
+- [Node.js](http://nodejs.org)
+- [Express.js](http://expressjs.com/)
+- Sweat & Tears
+```
+<!-- .element: class="fragment" contenteditable="true" -->
+
+---
+
+## Setting up .gitignore
+
+```
+.DS_Store
+node_modules
+.tmp
+.sass-cache
+public/images
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Create a .gitignore file<!-- .element: class="fragment" -->
+- Tells git what not to track<!-- .element: class="fragment" -->
+- Prevents system files from being tracked<!-- .element: class="fragment" -->
+- Add anything you do not want git to track<!-- .element: class="fragment" -->
+
+---
+
+# Part III<!-- .slide: class="title" -->
+## Understanding Git
+
+---
+
+![Git](images/git.png)<!-- .element: style="max-width: 250px;" -->
+
+- Version Control<!-- .element: class="fragment" -->
+- Distributed, no one person controls<!-- .element: class="fragment" -->
+- Not dependent on network access<!-- .element: class="fragment" -->
+- Not dependent on a central server<!-- .element: class="fragment" -->
+- Multiverse/Time Machine<!-- .element: class="fragment" -->
+
+---
+
+<!-- .slide: data-background="images/startrektimeline.png" -->
+
+---
+
+##Git process
+![Git](images/gitprocess.svg)
+
+- Initialize repository<!-- .element: class="fragment" -->
+- Add files to staging environment<!-- .element: class="fragment" -->
+- Lock files down by committing<!-- .element: class="fragment" -->
+- Committing creates a point to come back to<!-- .element: class="fragment" -->
+- Branches create alternate timelines<!-- .element: class="fragment" -->
+
+---
+
+##Lets do this
+
+```
+$ cd ~/Desktop/rouxstart
+$ git init
+$ git add .
+$ git commit -m "First Commit"
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Substitute ~/Desktop/rouxstart for your own folder<!-- .element: class="fragment" -->
+- Git init initializes the repository<!-- .element: class="fragment" -->
+- Creates an invisible .git folder<!-- .element: class="fragment" -->
+- folder keeps tracks of changes<!-- .element: class="fragment" -->
+
+---
+
+##git add
+
+- Moves files over to the staging area<!-- .element: class="fragment" -->
+- A temporary area<!-- .element: class="fragment" -->
+- Lets you build up your commits<!-- .element: class="fragment" -->
+- Experiment without committing<!-- .element: class="fragment" -->
+- You can always roll back (checkout) your last commit<!-- .element: class="fragment" -->
+
+---
+
+##git commit
+
+- Locks down the timeline<!-- .element: class="fragment" -->
+- Makes it a place you can come back to<!-- .element: class="fragment" -->
+- Push commits up to github/server<!-- .element: class="fragment" -->
+
+---
+
+##Making a change
+
+- Edit your README file<!-- .element: class="fragment" -->
+- Go back to the terminal and issue<!-- .element: class="fragment" -->
+
+```
+$ git status
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Tells you what is going on<!-- .element: class="fragment" -->
+- Gives you suggestions on what to do<!-- .element: class="fragment" -->
+
+---
+
+##Rolling back a change
+
+```
+$ git checkout README.md
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Checks out the last version of the file<!-- .element: class="fragment" -->
+- Like an undo command for <!-- .element: class="fragment" -->
+- You can do this for all of the files (git checkout .)<!-- .element: class="fragment" -->
+
+---
+
+##Make a change and commit it
+
+- Edit the README.md file again<!-- .element: class="fragment" -->
+
+```
+$ git add .
+$ git commit -m "Added line to README file"
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+---
+
+##Git log
+
+```
+$ git log
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+- Lets you see the history of commits<!-- .element: class="fragment" -->
+- If I edit the README file, I can only go back to the last checkout<!-- .element: class="fragment" -->
+- To go back further, I can use the SHA code in the logs<!-- .element: class="fragment" -->
+
+---
+
+```
+$ git checkout ######################
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- checkout one of the numbers from the log<!-- .element: class="fragment" -->
+- Puts you in detached head pointer mode<!-- .element: class="fragment" -->
+- Creates a temporary branch (alternate universe)<!-- .element: class="fragment" -->
+
+---
+
+```
+$ git checkout master
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Puts things back to where they were<!-- .element: class="fragment" -->
+- Lets you continue with the master branch<!-- .element: class="fragment" -->
+
+---
+
+# Part IV<!-- .slide: class="title" -->
+## Integrating Github
+
+---
+
+![Git](images/octocat.png)<!-- .element: style="max-width: 300px;" -->
+
+## What is Github?
+
+- Social Coding<!-- .element: class="fragment" -->
+- Online Git repository<!-- .element: class="fragment" -->
+- Great UI<!-- .element: class="fragment" -->
+- Allows for collaboration<!-- .element: class="fragment" -->
+- Awesome Stats & Visualization<!-- .element: class="fragment" -->
+
+---
+
+## Creating a Github Repository
+[https://github.com/new](https://github.com/new)
+
+- Give it a name<!-- .element: class="fragment" -->
+- Choose public<!-- .element: class="fragment" -->
+- Hit create<!-- .element: class="fragment" -->
+
+---
+
+## Push the current repository
+
+```
+$ git remote add origin https://github.com/planetoftheweb/rouxstart.git
+$ git push -u origin master
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Make sure you use our name<!-- .element: class="fragment" -->
+- Associates local branch with Git Remote<!-- .element: class="fragment" -->
+- Check out your page on Github<!-- .element: class="fragment" -->
+- Parsed Markdown README file shows<!-- .element: class="fragment" -->
+- Use the push command to send<!-- .element: class="fragment" -->
+- Look at commit tab to see history<!-- .element: class="fragment" -->
+
+---
+
+# Part IV<!-- .slide: class="title" -->
+## Node Package Manager
+
+---
+
+## Node Package Manager (NPM)
+
+- Lets you manage your project needs<!-- .element: class="fragment" -->
+- Installs plugins<!-- .element: class="fragment" -->
+- Using package.json file<!-- .element: class="fragment" -->
+- Comes with a generator<!-- .element: class="fragment" -->
+
+---
+
+## NPM Generator
+
+```
+$ npm init
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Creates a package.json<!-- .element: class="fragment" -->
+- Answer questions<!-- .element: class="fragment" -->
+- Edit file afterwards<!-- .element: class="fragment" -->
+
+---
+
+## Practice Commit and pushing to Github
+
+```
+$ git add .
+$ git commit -m "added package.json file"
+$ git push -u origin master
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Commit as often as you want<!-- .element: class="fragment" -->
+- Push when you want to update github<!-- .element: class="fragment" -->
+
+---
+
+# Part V<!-- .slide: class="title" -->
+## Introduction to Node.js
+
+---
+
+## Introduction to Node.js
+
+- JavaScript on the Server<!-- .element: class="fragment" -->
+- Same V8 Engine from Chrome<!-- .element: class="fragment" -->
+- Program server same as client<!-- .element: class="fragment" -->
+- Some unique advantages<!-- .element: class="fragment" -->
+
+---
+
+## The big deal
+
+- Event driven programming on server<!-- .element: class="fragment" -->
+- Great for real time apps<!-- .element: class="fragment" -->
+- Non Blocking features<!-- .element: class="fragment" -->
+- Excels at two-way connections<!-- .element: class="fragment" -->
+- Great for chats, multiplayer games, etc<!-- .element: class="fragment" -->
+
+---
+
+## Who cares?
+[http://nodejs.org/industry/](http://nodejs.org/industry/)
+
+- Paypal
+- Walmart
+- Dow Jones
+- Uber
+- Yahoo
+
+---
+
+##The catch
+
+- Requires special server install<!-- .element: class="fragment" -->
+- Advanced JavaScript knowledge<!-- .element: class="fragment" -->
+- Modules, Objects, MVC<!-- .element: class="fragment" -->
+- Lots of Installations<!-- .element: class="fragment" -->
+- Lots of plugins (modules)<!-- .element: class="fragment" -->
+- Very low level<!-- .element: class="fragment" -->
+
+---
+
+## Hello node
+
+- Create an app.js file
+
+```javascript
+var http = require('http'); //add the http module
+var myServer = http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type" : "text/html"});
+  response.write("<b>Hello</b> World");
+  response.end();
+}); //create a server
+
+myServer.listen(3000);
+
+console.log("Go to http://localhost:3000 on your browser");
+```
+<!-- .element: class="fragment" contenteditable="true" style="width: 50%" -->
+
+- Require is how node.js imports modules<!-- .element: class="fragment" -->
+- Some modules are built in, some installed<!-- .element: class="fragment" -->
+- Pass the module methods & properties to http variable<!-- .element: class="fragment" -->
+
+---
+
+## Hello node
+
+```javascript
+var http = require('http'); //add the http module
+var myServer = http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type" : "text/html"});
+  response.write("<b>Hello</b> World");
+  response.end();
+}); //create a server
+
+myServer.listen(3000);
+
+console.log("Go to http://localhost:3000 on your browser");
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- CreateServer initializes our server<!-- .element: class="fragment" -->
+- Waits for request, returns a response<!-- .element: class="fragment" -->
+- To do things, we output using the response variable<!-- .element: class="fragment" -->
+- respose.writeHead() writes a server Header<!-- .element: class="fragment" -->
+- respose.end(); finished our message<!-- .element: class="fragment" -->
+
+---
+
+## Use Node to run our app
+
+```
+$ node app.js
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- From your app folder<!-- .element: class="fragment" -->
+- Open a localhost:3000<!-- .element: class="fragment" -->
+
+---
+
+# Exercise
+## Push to git and gitHub
+
+---
+
+# Part VI<!-- .slide: class="title" -->
+## Using Express.js
+
+---
+
+## What is Express.js?
+[http://expressjs.com/](http://expressjs.com/)
+
+- A Node.js Framework<!-- .element: class="fragment" -->
+- Gives Node.js realistic structure<!-- .element: class="fragment" -->
+- Templating languages (EJS | Jade)<!-- .element: class="fragment" -->
+- Easy Routing | preserving state<!-- .element: class="fragment" -->
+- Access to modern MVC pattern<!-- .element: class="fragment" -->
+
+---
+
+## Install Express
+
+```
+$ npm install express --save
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- Adds it as a dependency --save option<!-- .element: class="fragment" -->
+- Check out our package.json file<!-- .element: class="fragment" -->
+- This is how you add modules<!-- .element: class="fragment" -->
+- Adds a node_modules folder<!-- .element: class="fragment" -->
+- We are ignoring it in our .gitignore file<!-- .element: class="fragment" -->
+
+---
+
+## Modify App.js
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  res.send('<H1>Hello</H1> Express');
+});
+
+var server = app.listen(3000, function() {
+  console.log('Listening on port 3000');
+});
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- Stop and Rerun server<!-- .element: class="fragment" -->
+- Similar to node.js<!-- .element: class="fragment" -->
+- Simpler<!-- .element: class="fragment" -->
+- Easy Routing<!-- .element: class="fragment" -->
+- Adds verbs API<!-- .element: class="fragment" -->
+
+---
+
+##Go Routing
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.get('/', function(req, res) {
+  res.send('<H1>Hello</H1> Express');
+});
+
+app.get('/me', function(req, res) {
+  res.send('@planetoftheweb');
+});
+
+app.get('/who/:name?', function(req, res) {
+  var name = req.params.name;
+  res.send(name + ' was here');
+});
+
+app.get('/who/:name?/:title?', function(req, res) {
+  var name = req.params.name;
+  var title = req.params.title;
+  res.send('<p>name: ' + name + '<br>title: ' + title + '</p>');
+});
+
+app.get('*', function(req, res) {
+  res.send('Bad Route');
+});
+
+var server = app.listen(3000, function() {
+  console.log('Listening on port 3000');
+});
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- We can easily create routes<!-- .element: class="fragment" -->
+- We can pass parameters through routes<!-- .element: class="fragment" -->
+- Try creating more routes<!-- .element: class="fragment" -->
+- Routes can have regular expressions<!-- .element: class="fragment" -->
+
+---
+
+# Exercise
+
+- Add some of your own routes<!-- .element: class="fragment" -->
+- Commit and push as desired<!-- .element: class="fragment" -->
+
+---
+# Creating Views
+[http://jade-lang.com/](http://jade-lang.com/) or [http://embeddedjs.com/](http://embeddedjs.com/)
+
+- Two options EJS or Jade<!-- .element: class="fragment" -->
+- Create templates<!-- .element: class="fragment" -->
+- You can pass along an obect to a views<!-- .element: class="fragment" -->
+- It will be a local variable to the view<!-- .element: class="fragment" -->
+
+---
+
+## Install EJS
+
+```
+$ npm install ejs --save
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+
+---
+## Modify our App.js
+
+```
+var express = require('express');
+var app = express();
+
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+  res.render('default', {
+    title: 'Home',
+    users: ['Ray', 'Morten', 'James']
+  });
+});
+
+app.get('/me', function(req, res) {
+  res.send('@planetoftheweb');
+});
+
+app.get('/who/:name?', function(req, res) {
+  var name = req.params.name;
+  res.send(name + ' was here');
+});
+
+app.get('/who/:name?/:title?', function(req, res) {
+  var name = req.params.name;
+  var title = req.params.title;
+  res.send('<p>name: ' + name + '<br>title: ' + title + '</p>');
+});
+
+app.get('*', function(req, res) {
+  res.send('Bad Route');
+});
+
+var server = app.listen(3000, function() {
+  console.log('Listening on port 3000');
+});
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- app.set the view engine to ejs<!-- .element: class="fragment" -->
+- Asking Express to render a template<!-- .element: class="fragment" -->
+- We need to create this<!-- .element: class="fragment" -->
+- We can pass the template an object<!-- .element: class="fragment" -->
+- Become local variables<!-- .element: class="fragment" -->
+
+---
+## Basic EJS view
+
+- Create views folder with default.ejs file<!-- .element: class="fragment" -->
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My App</title>
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quod, praesentium dolor velit culpa cupiditate odio nihil voluptates aliquid eum dolore eligendi quas nobis nam nesciunt odit pariatur minus cum.</p>
+
+<ul>
+<% for(var i=0; i<users.length; i++) {%>
+  <li><%= users[i] %></li>
+<% } %>
+</ul>
+</body>
+</html>
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- Use the = sign when outputting a variable<!-- .element: class="fragment" -->
+- Use <%  %> when doing JavaScript<!-- .element: class="fragment" -->
+
+---
+## Creating Partials
+
+- Partials are like server side includes<!-- .element: class="fragment" -->
+- include_once command in PHP<!-- .element: class="fragment" -->
+- Break up your HTML into sub-templates <!-- .element: class="fragment" -->
+
+---
+## New default.ejs
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head><% include partials/page/head.ejs %></head>
+<body class="<%= classname %>" >
+<% include partials/page/header.ejs %>
+
+<div class="container">
+  <h1><%= title %></h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quod, praesentium dolor velit culpa cupiditate odio nihil voluptates aliquid eum dolore eligendi quas nobis nam nesciunt odit pariatur minus cum.</p>
+</div><!-- container -->
+
+  <% include partials/page/footer.ejs %>
+  <% include partials/page/jsdefaults.ejs %>
+</body>
+</html>
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- Much better organized<!-- .element: class="fragment" -->
+
+---
+
+## The locals variable
+
+```
+app.locals.pagetitle = "Awesome Website";
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- How do we share info between routes?<!-- .element: class="fragment" -->
+- We can use the app.locals variable<!-- .element: class="fragment" -->
+- Like a global variable, but local to routes<!-- .element: class="fragment" -->
+
+---
+
+## Externalizing Routes
+
+```
+var routes = require('./routes');
+...
+
+app.get('/', routes.index);
+app.get('/about', routes.about);
+
+app.get('*', function(req, res) {
+  res.send('Bad Route');
+});
+
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- Makes your app.js file smaller
+- Separates the routes
+- Modify App.js as above
+
+---
+
+## The Routes File
+
+```
+exports.index = function(req, res) {
+  res.render('default', {
+    title: 'Home',
+    classname: 'home',
+    users: ['Ray', 'Morten', 'James']
+  });
+}
+
+exports.about = function(req, res) {
+  res.render('default', {
+    title: 'About Us',
+    classname: 'about'
+  });
+}
+```
+<!-- .element: contenteditable="true" style="width: 50%" -->
+
+- create a routes folder<!-- .element: class="fragment" -->
+- create index.js in routes folder<!-- .element: class="fragment" -->
+- Put routes outside app.js<!-- .element: class="fragment" -->
+- res.render specifies which template to use<!-- .element: class="fragment" -->
+
+---
+
+## Using the Express Generator
+
+
+```
+$ cd ~/Desktop
+$ npm install -g express-generator
+$ express -e rouxfinished
+
+$ cd rouxfinished && npm install
+$ DEBUG=rouxfinished ./bin/www
+
+```
+- Move to the folder you want<!-- .element: class="fragment" -->
+- Install the generator<!-- .element: class="fragment" -->
+- Create project (-e uses EJS)<!-- .element: class="fragment" -->
+- Adds structure & modules<!-- .element: class="fragment" -->
+
+---
+
+## Initialize Git
+
+- Needs README & .gitignore<!-- .element: class="fragment" -->
+- Initialize with Git<!-- .element: class="fragment" -->
+- Create a Github Project<!-- .element: class="fragment" -->
+- Set the origin Master<!-- .element: class="fragment" -->
+- Push to Github<!-- .element: class="fragment" -->
+- Make a change to the readme at Github<!-- .element: class="fragment" -->
+- Pull the files<!-- .element: class="fragment" -->
+
+---
+
+# Complete Project<!-- .slide: class="title" -->
+
+
+</script>
+</section>
+
+</div><!-- slides -->
+</div><!-- reveal -->
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script src="_/reveal_defaults.js"></script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</html>
